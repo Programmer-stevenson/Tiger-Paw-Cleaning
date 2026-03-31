@@ -1,11 +1,16 @@
+# Tiger Paw Cleaning LLC
 
-  # Cleaning Company Website
+Professional website for Tiger Paw Cleaning LLC — a licensed and insured cleaning service providing reliable, thorough residential and commercial cleaning solutions.
 
-  This is a code bundle for Cleaning Company Website. The original project is available at https://www.figma.com/design/f1IQYTp889XA7npBAeD7jk/Cleaning-Company-Website.
+## Tech Stack
+- React + TypeScript
+- Vite
+- Tailwind CSS
+- Framer Motion
 
-  ## Running the code
-
-  Run `npm i` to install the dependencies.
-
-  Run `npm run dev` to start the development server.
-  
+## Features
+- Responsive mobile-first design
+- Smooth scroll animations
+- Service showcase
+- Contact form with free quote request
+- SEO-optimized
