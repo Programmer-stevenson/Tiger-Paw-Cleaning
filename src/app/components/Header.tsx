@@ -22,8 +22,10 @@ export function Header() {
     }
   };
 
+  const navTextColor = scrolled ? 'text-gray-900' : 'text-white';
+
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white border-b border-gray-200' : 'bg-transparent'}`}>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white border-b border-gray-200' : 'bg-black/40 backdrop-blur-sm'}`}>
       {/* Top bar */}
       <div className="bg-black text-white py-1.5">
         <div className="container mx-auto px-4 flex flex-wrap justify-between items-center gap-2 text-xs">
@@ -61,7 +63,7 @@ export function Header() {
           </motion.div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8 text-sm">
+          <nav className={`hidden md:flex items-center gap-8 text-sm ${navTextColor}`}>
             <button onClick={() => scrollToSection('home')} className="hover:text-primary transition-colors">
               Home
             </button>
@@ -78,56 +80,62 @@ export function Header() {
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            <Button 
-              size="sm"
-              onClick={() => scrollToSection('contact')}
-              className="bg-primary text-black hover:bg-primary/90"
-            >
-              Get a Free Quote
-            </Button>
+            <motion.div
+  whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(234, 179, 8, 0.5)" }}
+  whileTap={{ scale: 0.97 }}
+  className="inline-block rounded-lg"
+>
+  <Button 
+    size="sm"
+    onClick={() => scrollToSection('contact')}
+    className="bg-primary text-black hover:bg-primary/90"
+  >
+    Get a Free Quote
+  </Button>
+</motion.div>
           </div>
 
           {/* Mobile menu button */}
           <button
-            className="md:hidden"
+            className={`md:hidden ${navTextColor}`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
-            {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <nav className="md:hidden pb-3 flex flex-col gap-3 text-sm">
+          <nav className="md:hidden pb-4 pt-2 flex flex-col gap-1 text-sm bg-white rounded-lg shadow-lg mb-2 px-4">
             <button 
               onClick={() => scrollToSection('home')} 
-              className="text-left hover:text-primary transition-colors py-1.5"
+              className="text-left text-gray-900 hover:text-primary transition-colors py-2.5 border-b border-gray-100"
             >
               Home
             </button>
             <button 
               onClick={() => scrollToSection('services')} 
-              className="text-left hover:text-primary transition-colors py-1.5"
+              className="text-left text-gray-900 hover:text-primary transition-colors py-2.5 border-b border-gray-100"
             >
               Services
             </button>
             <button 
               onClick={() => scrollToSection('about')} 
-              className="text-left hover:text-primary transition-colors py-1.5"
+              className="text-left text-gray-900 hover:text-primary transition-colors py-2.5 border-b border-gray-100"
             >
               About Us
             </button>
             <button 
               onClick={() => scrollToSection('contact')} 
-              className="text-left hover:text-primary transition-colors py-1.5"
+              className="text-left text-gray-900 hover:text-primary transition-colors py-2.5"
             >
               Contact
             </button>
             <Button 
               size="sm"
               onClick={() => scrollToSection('contact')}
-              className="bg-primary text-black hover:bg-primary/90 w-full"
+              className="bg-primary text-black hover:bg-primary/90 w-full mt-2"
             >
               Get a Free Quote
             </Button>

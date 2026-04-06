@@ -1,10 +1,14 @@
 import { useState } from 'react';
-import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Loader2, CheckCircle2, XCircle } from 'lucide-react';
 import { Card, CardContent } from './ui/card';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { Button } from './ui/button';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
+
+const WEB3FORMS_ACCESS_KEY = 'cedffbde-d6b1-4a2e-9c82-3f1799460038'; // Replace with your Web3Forms access key
+
+type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -14,18 +18,38 @@ export function Contact() {
     service: '',
     message: '',
   });
+  const [status, setStatus] = useState<FormStatus>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real application, this would send the form data to a server
-    alert('Thank you for your inquiry! We will contact you shortly.');
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      service: '',
-      message: '',
-    });
+    setStatus('submitting');
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `New Quote Request – ${formData.service || 'General Inquiry'}`,
+          from_name: 'Tiger Paw Cleaning Website',
+          ...formData,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setStatus('success');
+        setFormData({ name: '', email: '', phone: '', service: '', message: '' });
+        setTimeout(() => setStatus('idle'), 5000);
+      } else {
+        setStatus('error');
+        setTimeout(() => setStatus('idle'), 5000);
+      }
+    } catch {
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 5000);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -155,7 +179,37 @@ export function Contact() {
             <Card className="border-2">
               <CardContent className="p-8">
                 <h3 className="text-2xl mb-6">Request a Free Quote</h3>
+
+                {/* Status banners */}
+                <AnimatePresence>
+                  {status === 'success' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="flex items-center gap-3 bg-green-50 border border-green-200 text-green-800 rounded-lg p-4 mb-6"
+                    >
+                      <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
+                      <p>Thank you for your inquiry! We'll get back to you shortly.</p>
+                    </motion.div>
+                  )}
+                  {status === 'error' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="flex items-center gap-3 bg-red-50 border border-red-200 text-red-800 rounded-lg p-4 mb-6"
+                    >
+                      <XCircle className="w-5 h-5 flex-shrink-0" />
+                      <p>Something went wrong. Please try again or call us directly.</p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Honeypot spam protection */}
+                  <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
+
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="name" className="block mb-2">
@@ -170,6 +224,7 @@ export function Contact() {
                         onChange={handleChange}
                         placeholder="John Doe"
                         className="border-2 focus:border-primary"
+                        disabled={status === 'submitting'}
                       />
                     </div>
                     <div>
@@ -185,6 +240,7 @@ export function Contact() {
                         onChange={handleChange}
                         placeholder="john@example.com"
                         className="border-2 focus:border-primary"
+                        disabled={status === 'submitting'}
                       />
                     </div>
                   </div>
@@ -203,6 +259,7 @@ export function Contact() {
                         onChange={handleChange}
                         placeholder="(573) 777-0025"
                         className="border-2 focus:border-primary"
+                        disabled={status === 'submitting'}
                       />
                     </div>
                     <div>
@@ -215,7 +272,8 @@ export function Contact() {
                         required
                         value={formData.service}
                         onChange={handleChange}
-                        className="w-full h-10 px-3 rounded-md border-2 border-input bg-background focus:border-primary outline-none"
+                        className="w-full h-10 px-3 rounded-md border-2 border-input bg-background focus:border-primary outline-none disabled:opacity-50"
+                        disabled={status === 'submitting'}
                       >
                         <option value="">Select a service</option>
                         <option value="residential">Residential Cleaning</option>
@@ -240,19 +298,28 @@ export function Contact() {
                       placeholder="Tell us about your cleaning needs..."
                       rows={5}
                       className="border-2 focus:border-primary"
+                      disabled={status === 'submitting'}
                     />
                   </div>
 
                   <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                    whileHover={{ scale: status === 'submitting' ? 1 : 1.02 }}
+                    whileTap={{ scale: status === 'submitting' ? 1 : 0.98 }}
                   >
                     <Button 
                       type="submit"
                       size="lg"
-                      className="w-full bg-primary text-black hover:bg-primary/90"
+                      className="w-full bg-primary text-black hover:bg-primary/90 disabled:opacity-50"
+                      disabled={status === 'submitting'}
                     >
-                      Send Message
+                      {status === 'submitting' ? (
+                        <span className="flex items-center gap-2">
+                          <Loader2 className="w-5 h-5 animate-spin" />
+                          Sending...
+                        </span>
+                      ) : (
+                        'Send Message'
+                      )}
                     </Button>
                   </motion.div>
                 </form>

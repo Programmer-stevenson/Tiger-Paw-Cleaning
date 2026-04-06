@@ -71,13 +71,19 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.6 }}
             >
-              <Button 
-                size="lg"
-                onClick={() => scrollToSection('contact')}
-                className="bg-primary text-black hover:bg-primary/90 text-lg px-8"
-              >
-                Get Free Quote
-              </Button>
+             <motion.div
+  whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(var(--primary-rgb), 0.5)" }}
+  whileTap={{ scale: 0.97 }}
+  className="inline-block rounded-lg"
+>
+  <Button 
+    size="lg"
+    onClick={() => scrollToSection('contact')}
+    className="bg-primary text-black hover:bg-primary/90 text-lg px-8"
+  >
+    Get Free Quote
+  </Button>
+</motion.div>
               <Button 
                 size="lg"
                 variant="outline"
