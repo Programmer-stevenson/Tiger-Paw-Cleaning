@@ -47,10 +47,10 @@ export function StickyPopup() {
 
           <div className="p-6">
             <h3 className="text-xl mb-2 text-primary pr-6">
-              🐯 Limited Time Offer
-            </h3>
+  <span className="text-4xl align-middle mr-1">🐯</span> Limited Time Offer
+</h3>
             <p className="text-gray-300 text-sm mb-4">
-              Get <span className="text-primary font-semibold">10% off</span> your first deep cleaning service. Book today and experience the Tiger Paw difference!
+              Get <span className="text-primary font-semibold">20% off</span> your first deep cleaning service. Book today and experience the Tiger Paw difference!
             </p>
             <Button
               onClick={handleCTA}
