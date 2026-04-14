@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Button } from './ui/button';
+import tigerImg from '../../assets/tiger-popup.png';
 
 export function StickyPopup() {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,18 +47,30 @@ export function StickyPopup() {
           <div className="h-1.5 bg-primary" />
 
           <div className="p-6">
-            <h3 className="text-xl mb-2 text-primary pr-6">
-  <span className="text-4xl align-middle mr-1">🐯</span> Limited Time Offer
-</h3>
-            <p className="text-gray-300 text-sm mb-4">
-              Get <span className="text-primary font-semibold">20% off</span> your first deep cleaning service. Book today and experience the Tiger Paw difference!
+            <div className="flex items-start gap-4 mb-4">
+              <img
+                src={tigerImg}
+                alt="Tiger Paw Cleaning"
+                className="w-20 h-20 object-contain flex-shrink-0"
+              />
+              <div className="pr-4">
+                <div className="text-[10px] uppercase tracking-widest text-primary/80 mb-1">
+                  New Client Offer
+                </div>
+                <h3 className="text-2xl text-primary leading-tight mb-1">
+                  Save 10% on Your First Clean
+                </h3>
+              </div>
+            </div>
+            <p className="text-gray-300 text-sm leading-relaxed mb-4">
+              Professional deep cleaning for homes and offices. Licensed, insured, and trusted across the valley.
             </p>
             <Button
               onClick={handleCTA}
               className="bg-primary text-black hover:bg-primary/90 w-full"
               size="sm"
             >
-              Claim Your Discount
+              Get Your Free Quote
             </Button>
           </div>
         </motion.div>
