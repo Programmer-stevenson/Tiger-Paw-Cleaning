@@ -124,9 +124,16 @@ export function Footer() {
                     <span className="break-all">tigerpawcleaning@gmail.com</span>
                   </a>
                 </li>
-                <li className="flex items-center justify-center gap-2 text-gray-400">
+                <li className="flex items-center justify-center gap-2 text-orange-500">
                   <MapPin className="w-4 h-4 flex-shrink-0" />
-                  <span>Serving the Greater Metro Area</span>
+                  <span>Service Areas</span>
+                </li>
+                <li className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-gray-400">
+                  <span className="hover:text-primary transition-colors cursor-default">Kansas City Metro</span>
+                  <span className="text-gray-600">·</span>
+                  <span className="hover:text-primary transition-colors cursor-default">St. Louis Metro</span>
+                  <span className="text-gray-600">·</span>
+                  <span className="hover:text-primary transition-colors cursor-default">Statewide Missouri</span>
                 </li>
               </ul>
             </motion.div>
@@ -234,8 +241,13 @@ export function Footer() {
                   </a>
                 </li>
                 <li className="flex items-start gap-3 text-gray-400">
-                  <MapPin className="w-5 h-5 mt-1 flex-shrink-0" />
-                  <span>Serving the Greater Metro Area</span>
+                  <MapPin className="w-5 h-5 mt-1 flex-shrink-0 text-orange-500" />
+                  <div className="flex flex-col gap-1">
+                    <span className="text-orange-500">Service Areas</span>
+                    <span className="hover:text-primary transition-colors cursor-default">Kansas City Metro</span>
+                    <span className="hover:text-primary transition-colors cursor-default">St. Louis Metro</span>
+                    <span className="hover:text-primary transition-colors cursor-default">Statewide Missouri</span>
+                  </div>
                 </li>
               </ul>
             </motion.div>
