@@ -320,7 +320,7 @@ export function Contact() {
                     required
                     value={formData.phone}
                     onChange={handleChange}
-                    placeholder="(573) 777-0025"
+                    placeholder="(###) ###-####"
                     className="h-12 border-gray-200 bg-gray-50/50 focus:bg-white focus:border-primary transition-colors"
                     disabled={status === 'submitting'}
                   />
