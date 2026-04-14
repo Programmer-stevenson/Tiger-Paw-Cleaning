@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Phone, Mail, MapPin, Facebook, Instagram, Twitter } from 'lucide-react';
 import { motion } from 'motion/react';
-import logo from '../../assets/logo.png';
+import logo from '../../assets/favicon.png';
 import { PrivacyPolicy } from './Privacypolicy';
 import { TermsOfService } from './Termsofservice';
 
@@ -32,7 +32,7 @@ export function Footer() {
                 <img 
                   src={logo} 
                   alt="Tiger Paw Cleaning LLC Logo" 
-                  className="h-16 w-auto"
+                  className="h-32 w-auto"
                 />
               </div>
               <p className="text-gray-400 mb-4">

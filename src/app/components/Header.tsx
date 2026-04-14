@@ -22,10 +22,8 @@ export function Header() {
     }
   };
 
-  const navTextColor = scrolled ? 'text-gray-900' : 'text-white';
-
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white border-b border-gray-200' : 'bg-black/40 backdrop-blur-sm'}`}>
+    <header className={`fixed top-0 left-0 right-0 z-50 bg-white transition-all duration-300 ${scrolled ? 'border-b border-gray-200 shadow-sm' : ''}`}>
       {/* Top bar */}
       <div className="bg-black text-white py-1.5">
         <div className="container mx-auto px-4 flex flex-wrap justify-between items-center gap-2 text-xs">
@@ -63,7 +61,7 @@ export function Header() {
           </motion.div>
 
           {/* Desktop Navigation */}
-          <nav className={`hidden md:flex items-center gap-8 text-sm ${navTextColor}`}>
+          <nav className="hidden md:flex items-center gap-8 text-sm text-gray-900">
             <button onClick={() => scrollToSection('home')} className="hover:text-primary transition-colors">
               Home
             </button>
@@ -81,23 +79,23 @@ export function Header() {
           {/* CTA Button */}
           <div className="hidden md:block">
             <motion.div
-  whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(234, 179, 8, 0.5)" }}
-  whileTap={{ scale: 0.97 }}
-  className="inline-block rounded-lg"
->
-  <Button 
-    size="sm"
-    onClick={() => scrollToSection('contact')}
-    className="bg-primary text-black hover:bg-primary/90"
-  >
-    Get a Free Quote
-  </Button>
-</motion.div>
+              whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(234, 179, 8, 0.5)" }}
+              whileTap={{ scale: 0.97 }}
+              className="inline-block rounded-lg"
+            >
+              <Button 
+                size="sm"
+                onClick={() => scrollToSection('contact')}
+                className="bg-primary text-black hover:bg-primary/90"
+              >
+                Get a Free Quote
+              </Button>
+            </motion.div>
           </div>
 
           {/* Mobile menu button */}
           <button
-            className={`md:hidden ${navTextColor}`}
+            className="md:hidden text-gray-900"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >

@@ -4,6 +4,7 @@ import { Services } from './components/Services';
 import { About } from './components/About';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
+import { StickyPopup } from './components/StickyPopup';
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
+      <StickyPopup />
     </div>
   );
 }
