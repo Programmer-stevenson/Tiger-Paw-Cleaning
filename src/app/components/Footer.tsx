@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Phone, Mail, MapPin, Facebook, Instagram, Twitter } from 'lucide-react';
 import { motion } from 'motion/react';
-import logo from '../../assets/favicon.png';
+import logo from '../../assets/footer-logo.png';
 import { PrivacyPolicy } from './Privacypolicy';
 import { TermsOfService } from './Termsofservice';
 
@@ -42,7 +42,7 @@ export function Footer() {
                 href="https://www.facebook.com/share/17TS22qmai/?mibextid=wwXIfr" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors"
+                className="w-10 h-10 bg-primary text-black rounded-full flex items-center justify-center hover:bg-orange-500 transition-colors"
                 aria-label="Facebook"
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 whileTap={{ scale: 0.95 }}
@@ -155,7 +155,7 @@ export function Footer() {
                   href="https://www.facebook.com/share/17TS22qmai/?mibextid=wwXIfr" 
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-black transition-colors"
+                  className="w-10 h-10 bg-primary text-black rounded-full flex items-center justify-center hover:bg-orange-500 transition-colors"
                   aria-label="Facebook"
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   whileTap={{ scale: 0.95 }}
