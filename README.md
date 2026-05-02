@@ -2,6 +2,8 @@
 
 Professional website for Tiger Paw Cleaning LLC — a licensed and insured cleaning service providing reliable, thorough residential and commercial cleaning solutions.
 
+All Images  ----EXCEPT ----> (BABY TIGER in pop up, FOOTER COMPANY LOGO, AND CONTACT FORM PAWS )  <---- EXCEPT ----- Were provided by the client.
+
 ## Tech Stack
 - React + TypeScript
 - Vite
