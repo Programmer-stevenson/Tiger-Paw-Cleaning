@@ -3,6 +3,7 @@ import { Menu, X, Phone, Mail } from 'lucide-react';
 import { Button } from './ui/button';
 import { motion } from 'motion/react';
 import logo from '../../assets/favicon.png';
+import scrolledLogo from '../../assets/footer-logo.png';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,10 +23,13 @@ export function Header() {
     }
   };
 
+  // Color helpers that flip when the bar goes black
+  const navText = scrolled ? 'text-white' : 'text-gray-900';
+
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 bg-white transition-all duration-300 ${scrolled ? 'border-b border-gray-200 shadow-sm' : ''}`}>
-      {/* Top bar */}
-      <div className="bg-black text-white py-1.5">
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-black border-b border-white/10 shadow-lg' : 'bg-white'}`}>
+      {/* Top bar — flips to white when scrolled */}
+      <div className={`py-1.5 transition-colors duration-300 ${scrolled ? 'bg-white text-gray-900 border-b border-gray-200' : 'bg-black text-white'}`}>
         <div className="container mx-auto px-4 flex flex-wrap justify-between items-center gap-2 text-xs">
           <div className="flex items-center gap-4">
             <a href="tel:573-777-0025" className="flex items-center gap-1.5 hover:text-primary transition-colors">
@@ -38,7 +42,7 @@ export function Header() {
             </a>
           </div>
           <div className="hidden sm:block">
-            <span className="text-primary">Professional. Reliable. Powerful Clean.</span>
+            <span className={scrolled ? 'text-orange-500' : 'text-primary'}>Professional. Reliable. Powerful Clean.</span>
           </div>
         </div>
       </div>
@@ -46,7 +50,7 @@ export function Header() {
       {/* Main navigation */}
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between py-2">
-          {/* Logo */}
+          {/* Logo — swaps to the gold footer logo when scrolled */}
           <motion.div 
             className="flex items-center gap-3"
             initial={{ opacity: 0, x: -20 }}
@@ -54,14 +58,14 @@ export function Header() {
             transition={{ duration: 0.5 }}
           >
             <img 
-              src={logo} 
+              src={scrolled ? scrolledLogo : logo} 
               alt="Tiger Paw Cleaning LLC Logo" 
-              className="h-20 w-auto md:h-24 -my-4"
+              className="h-20 w-auto md:h-24 -my-4 transition-opacity duration-300"
             />
           </motion.div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8 text-sm text-gray-900">
+          <nav className={`hidden md:flex items-center gap-8 text-sm transition-colors duration-300 ${navText}`}>
             <button onClick={() => scrollToSection('home')} className="hover:text-primary transition-colors">
               Home
             </button>
@@ -95,7 +99,7 @@ export function Header() {
 
           {/* Mobile menu button */}
           <button
-            className="md:hidden text-gray-900"
+            className={`md:hidden transition-colors duration-300 ${navText}`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -105,7 +109,7 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <nav className="md:hidden pb-4 pt-2 flex flex-col gap-1 text-sm bg-white rounded-lg shadow-lg mb-2 px-4">
+          <nav className="md:hidden pb-4 pt-2 flex flex-col gap-1 text-sm rounded-lg shadow-lg mb-2 px-4 bg-white">
             <button 
               onClick={() => scrollToSection('home')} 
               className="text-left text-gray-900 hover:text-primary transition-colors py-2.5 border-b border-gray-100"
